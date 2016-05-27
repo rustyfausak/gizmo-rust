@@ -28,8 +28,10 @@ struct Args {
 
 fn main() {
     let args: Args = Docopt::new(USAGE)
-        .and_then(|d| Ok(d.version(Some(VERSION.to_string()))))
-        .and_then(|d| d.decode())
+        .unwrap_or_else(|e| e.exit())
+        .version(Some(VERSION.to_string()))
+        .help(true)
+        .decode()
         .unwrap_or_else(|e| e.exit());
 
     println!("{:?}", args);
