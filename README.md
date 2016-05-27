@@ -1,3 +1,5 @@
+![Travis CI](https://travis-ci.org/rustyfausak/gizmo-rust.svg?branch=master)
+
 # gizmo-rust
 Rocket League replay parser in Rust
 
