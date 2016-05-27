@@ -1,0 +1,6 @@
+[package]
+name = "gizmo-rust"
+version = "0.0.1"
+authors = ["Rusty Fausak <rustyfausak@gmail.com>"]
+
+[dependencies]
