@@ -3,4 +3,10 @@ name = "gizmo-rust"
 version = "0.0.1"
 authors = ["Rusty Fausak <rustyfausak@gmail.com>"]
 
+[[bin]]
+name = "rlparse"
+path = "src/main.rs"
+
 [dependencies]
+docopt = "0.6.80"
+rustc-serialize = "0.3"
