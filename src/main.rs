@@ -35,4 +35,5 @@ fn main() {
         .decode()
         .unwrap_or_else(|e| e.exit());
 
+    gizmo::parser::parse(&args.arg_file).unwrap();
 }
