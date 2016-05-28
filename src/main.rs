@@ -35,6 +35,4 @@ fn main() {
         .decode()
         .unwrap_or_else(|e| e.exit());
 
-    println!("{}", gizmo::gizmo::hello(&args.arg_file));
-    //gizmo::parse(&args.arg_file);
 }
