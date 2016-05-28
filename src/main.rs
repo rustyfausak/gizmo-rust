@@ -1,3 +1,4 @@
+extern crate gizmo;
 extern crate docopt;
 extern crate rustc_serialize;
 
@@ -9,8 +10,8 @@ const USAGE: &'static str = "
 Rocket League replay parser.
 
 Usage:
-  rlparse [options] <file>
-  rlparse (--help | --version)
+  gizmo [options] <file>
+  gizmo (--help | --version)
 
 Options:
   -h, --help     Show this help.
@@ -20,7 +21,7 @@ Options:
 
 #[derive(Debug, RustcDecodable)]
 struct Args {
-    arg_file: Vec<String>,
+    arg_file: String,
     flag_verbose: bool,
     flag_help: bool,
     flag_version: bool
@@ -34,5 +35,6 @@ fn main() {
         .decode()
         .unwrap_or_else(|e| e.exit());
 
-    println!("{:?}", args);
+    println!("{}", gizmo::gizmo::hello(&args.arg_file));
+    //gizmo::parse(&args.arg_file);
 }
