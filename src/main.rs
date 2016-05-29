@@ -29,11 +29,11 @@ struct Args {
 
 fn main() {
     let args: Args = Docopt::new(USAGE)
-        .unwrap_or_else(|e| e.exit())
+        .unwrap()
         .version(Some(VERSION.to_string()))
         .help(true)
         .decode()
         .unwrap_or_else(|e| e.exit());
 
-    gizmo::parser::parse(&args.arg_file).unwrap();
+    let mut replay = gizmo::Replay::from_file(&args.arg_file).unwrap();
 }
