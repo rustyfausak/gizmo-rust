@@ -1,48 +1,37 @@
 use super::reader;
 use std::io;
-use std::fs;
+use std::io::prelude::*;
+use std::fs::File;
 use std::path::Path;
 
 use {
     Error, Result
 };
 
-pub struct Replay<R> {
-    reader: R
+pub struct Replay {
+    bytes: Vec<u8>
 }
 
-impl<R: io::Read> Replay<R> {
-    pub fn from_reader(reader: R) -> Replay<R> {
+impl Replay {
+    pub fn from_bytes(bytes: Vec<u8>) -> Replay {
         Replay {
-            reader: reader
+            bytes: bytes
         }
     }
-}
 
-impl Replay<fs::File> {
-    pub fn from_file<P: AsRef<Path>>(path: P) -> Result<Replay<fs::File>> {
-        Ok(Replay::from_reader(try!(fs::File::open(path))))
-    }
-}
-
-/*
-impl Replay {
-    pub fn new(path: &str) -> Result<Replay, io::Error> {
+    pub fn from_file<P: AsRef<Path>>(path: P) -> Result<Replay> {
         let mut f = try!(File::open(path));
-        let mut buffer = Vec::new();
+        let mut bytes = Vec::new();
 
         // read the whole file
-        let n = try!(f.read_to_end(&mut buffer));
+        let n = try!(f.read_to_end(&mut bytes));
         println!("{} bytes placed into buffer", n);
 
         println!("{}", reader::hello());
 
-        let x: u8 = buffer[0];
+        let x: u8 = bytes[0];
         println!("{:b}", x);
 
-        Ok(Replay {
-            path: path
-        })
+        Ok(Replay::from_bytes(bytes))
     }
 }
-*/
