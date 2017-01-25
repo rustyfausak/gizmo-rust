@@ -1,12 +1,16 @@
+extern crate byteorder;
+
 use std::error::Error as StdError;
 use std::fmt;
 use std::io;
 use std::result;
 
+// So we can access the struct when we include this lib
 pub use replay::{Replay};
 
+// Include our files
 pub mod replay;
-pub mod reader;
+pub mod game;
 
 // A convenience type for representing the result of most replay operations.
 pub type Result<T> = result::Result<T, Error>;

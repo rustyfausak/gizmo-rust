@@ -35,5 +35,9 @@ fn main() {
         .decode()
         .unwrap_or_else(|e| e.exit());
 
-    let mut replay = gizmo::Replay::from_file(&args.arg_file).unwrap();
+    let game = gizmo::Replay::from_file(&args.arg_file)
+        .unwrap()
+        .parse()
+        .unwrap();
+    println!("{:?}", game);
 }
